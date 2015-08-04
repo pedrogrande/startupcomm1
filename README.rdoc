@@ -6,6 +6,12 @@ This is a change I made in Github.
 
 This is a change I made on the add_new_button branch
 
+Show me a merge conflict - LOCAL
+
+HELLO
+
+
+
 == README
 
 This README would normally document whatever steps are necessary to get the
