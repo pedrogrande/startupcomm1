@@ -6,10 +6,14 @@ This is a change I made in Github.
 
 This is a change I made on the add_new_button branch
 
+
 Show me a merge conflict - LOCAL
 
 HELLO
 
+
+
+This is a MERGE CONFLICT ON THE GITHUB SIDE
 
 
 == README
@@ -40,3 +44,6 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+HELLO _ THIS IS PETER
