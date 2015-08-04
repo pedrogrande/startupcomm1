@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %><%= alert %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @startup.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @startup.description %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @startup.logo %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @startup.website %>
+</p>
+<p><strong>Admin: </strong><%= @owner_profile.name %></p>
+<p>
+  <strong>People:</strong>
+  <ul>
+    <% @startup.users.each do |user| %>
+      <li><%= link_to user.profile.name, profile_path(user.profile) %></li>
+    <% end %>
+  </ul>
+</p>
+
+<% if user_signed_in? %>
+  <% if @startup.users.include?(current_user) %>
+    <p><%= link_to "I'm leaving", leave_startup_path, method: :delete, class: 'btn btn-danger btn-xs' %></p>
+  <% else %>
+    <p><%= link_to 'I work here', join_startup_path, class: 'btn btn-default btn-xs' %></p>
+  <% end %>
+<% end %>
+
+<hr>
+<h3>Tags</h3>
+<ul>
+  <% @startup.tags.each do |tag| %>
+    <li><%= link_to tag.name, startups_path(tag: tag.name) %> (<%= tag.taggings_count %>)</li>
+  <% end %>
+</ul>
+
+<% if can? :update, @startup %>
+  <%= link_to 'Edit', edit_startup_path(@startup) %>
+<% end %>
+
+
+

@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  start_time: 2015-07-30 18:15:33
+  end_time: 2015-07-30 18:15:33
+  name: MyString
+  description: MyText
+  location_name: MyString
+  street_address: MyString
+  suburb: MyString
+  state: MyString
+  postcode: MyString
+  country: MyString
+  website: MyString
+  hashtag: MyString
+  organiser: MyString
+  logo: MyString
+  banner: MyString
+  price: 9.99
+
+two:
+  user_id: 
+  start_time: 2015-07-30 18:15:33
+  end_time: 2015-07-30 18:15:33
+  name: MyString
+  description: MyText
+  location_name: MyString
+  street_address: MyString
+  suburb: MyString
+  state: MyString
+  postcode: MyString
+  country: MyString
+  website: MyString
+  hashtag: MyString
+  organiser: MyString
+  logo: MyString
+  banner: MyString
+  price: 9.99

@@ -1,0 +1,17 @@
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3><%= profile.name %></h3>
+        <p><%= profile.profile_pic %></p>
+        <p>
+          <strong>About me</strong>
+          <%= profile.bio %>
+        </p>
+        <p>
+          <strong>Location:</strong>
+          <%= profile.city %>, <%= profile.country %>
+        </p>
+        <%= link_to 'See more', profile_path(profile), class: 'btn btn-info' %>
+        
+      </div>
+    </div>

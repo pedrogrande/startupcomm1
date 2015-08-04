@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event.user %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @event.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @event.end_time %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Location name:</strong>
+  <%= @event.location_name %>
+</p>
+
+<p>
+  <strong>Street address:</strong>
+  <%= @event.street_address %>
+</p>
+
+<p>
+  <strong>Suburb:</strong>
+  <%= @event.suburb %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @event.state %>
+</p>
+
+<p>
+  <strong>Postcode:</strong>
+  <%= @event.postcode %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @event.country %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @event.website %>
+</p>
+
+<p>
+  <strong>Hashtag:</strong>
+  <%= @event.hashtag %>
+</p>
+
+<p>
+  <strong>Organiser:</strong>
+  <%= @event.organiser %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @event.logo %>
+</p>
+
+<p>
+  <strong>Banner:</strong>
+  <%= @event.banner %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @event.price %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

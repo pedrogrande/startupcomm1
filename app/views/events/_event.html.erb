@@ -1,0 +1,19 @@
+ <div class="panel panel-default">
+      <div class="panel-body">
+        <h3><%= event.name %></h3>
+        <p>When? <%= event.start_time.strftime('%d %b %y, %l:%m%P') %></p>
+        <p>
+          <strong>Description of event</strong>
+          <%= event.description %>
+        </p>
+        <p>
+          <strong>Location:</strong>
+          <%= event.location_name %>, <%= event.country %>
+        </p>
+        <%= link_to 'See more', event_path(event), class: 'btn btn-info' %>
+        <% if event.user == current_user %>
+          <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-warning' %>
+        <% end %>
+        
+      </div>
+    </div>
