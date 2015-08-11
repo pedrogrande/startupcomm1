@@ -16,6 +16,7 @@
      
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/startups">Startups</a></li>
+        <li><a href="/questions">Startup Questions</a></li>
         <% if user_signed_in? %>
           <% if current_user.has_role? :admin %>
             <li><%= link_to 'Admin', admin_path %></li>

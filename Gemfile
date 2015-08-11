@@ -12,6 +12,7 @@ gem 'cancancan'
 gem 'rolify'
 gem 'friendly_id'
 gem 'acts-as-taggable-on'
+gem 'acts_as_votable'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

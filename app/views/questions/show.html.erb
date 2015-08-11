@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <p class="panel-title"><%= @question.title %></p>
+  </div>
+  <div class="panel-body">
+    <% if user_signed_in? %>
+      <% if current_user.voted_for? @question %>
+        <p><%= link_to "Cancel upvote", downvote_question_path(@question), class: 'btn btn-danger' %></p>
+      <% else %>
+        <p><%= link_to "Upvote", upvote_question_path(@question) %></p>
+      <% end %>
+    <% end %>
+    <p>
+      <%= @question.description %>
+    </p>
+    <p>
+      <strong>Asked by:</strong>
+      <%= @question.user.profile.name %>
+    </p>
+    <p>
+      <strong>Views:</strong>
+      <%= @question.views %>
+    </p>
+    <p><strong>Upvotes: <%= @question.votes_for.size %></strong> </p>
+
+    <% if @question.user == current_user %>
+      <%= link_to 'Edit', edit_question_path(@question) %>
+    <% end %>
+  </div>
+</div>
+
+<hr>
+<%= render 'answers/form' %>
+
+
+<%= render @answers %>
+
+
+
+
+
+
