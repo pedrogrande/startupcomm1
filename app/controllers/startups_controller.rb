@@ -1,6 +1,6 @@
 class StartupsController < ApplicationController
   before_action :set_startup, only: [:join, :leave, :show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   def leave
     @startup.users.delete(user)
@@ -85,6 +85,6 @@ class StartupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def startup_params
-      params.require(:startup).permit(:tag_list, :name, :description, :logo, :website, :owner_id)
+      params.require(:startup).permit(:street, :suburb, :state, :postcode, :country, :tag_list, :name, :description, :logo, :website, :owner_id, :location_attributes => [:id, :street, :suburb, :state, :postcode, :country, :_destroy])
     end
 end

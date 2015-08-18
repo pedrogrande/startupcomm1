@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  startup_id: 
+  street: MyString
+  suburb: MyString
+  state: MyString
+  postcode: MyString
+  country: MyString
+
+two:
+  startup_id: 
+  street: MyString
+  suburb: MyString
+  state: MyString
+  postcode: MyString
+  country: MyString

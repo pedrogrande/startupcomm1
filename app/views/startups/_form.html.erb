@@ -1,4 +1,4 @@
-<%= simple_form_for(@startup) do |f| %>
+<%= simple_nested_form_for(@startup) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -7,6 +7,16 @@
     <%= f.input :logo %>
     <%= f.input :website %>
     <%= f.input :tag_list %>
+
+    <%= f.fields_for :locations do |location_field| %>
+      <%= location_field.input :street %>
+      <%= location_field.input :suburb %>
+      <%= location_field.input :state %>
+      <%= location_field.input :postcode %>
+      <%= location_field.input :country %>
+      <%= location_field.link_to_remove "Remove this location" %>
+    <% end %>
+    <%= f.link_to_add "Add Location", :locations, class: 'btn btn-info' %>
   </div>
 
   <div class="form-actions">

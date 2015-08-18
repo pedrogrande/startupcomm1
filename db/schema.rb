@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811103742) do
+ActiveRecord::Schema.define(version: 20150818081409) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 20150811103742) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "locations", force: :cascade do |t|
+    t.integer  "startup_id"
+    t.string   "street"
+    t.string   "suburb"
+    t.string   "state"
+    t.string   "postcode"
+    t.string   "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "locations", ["startup_id"], name: "index_locations_on_startup_id"
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name"
@@ -125,6 +138,13 @@ ActiveRecord::Schema.define(version: 20150811103742) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "slug"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "street"
+    t.string   "suburb"
+    t.string   "state"
+    t.string   "postcode"
+    t.string   "country"
   end
 
   add_index "startups", ["slug"], name: "index_startups_on_slug", unique: true
