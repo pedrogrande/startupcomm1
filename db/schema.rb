@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818081409) do
+ActiveRecord::Schema.define(version: 20150818101223) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20150818081409) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["user_id"], name: "index_answers_on_user_id"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -70,6 +76,9 @@ ActiveRecord::Schema.define(version: 20150818081409) do
     t.string   "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "name"
   end
 
   add_index "locations", ["startup_id"], name: "index_locations_on_startup_id"
@@ -118,6 +127,16 @@ ActiveRecord::Schema.define(version: 20150818081409) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "startup_categories", force: :cascade do |t|
+    t.integer  "startup_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "startup_categories", ["category_id"], name: "index_startup_categories_on_category_id"
+  add_index "startup_categories", ["startup_id"], name: "index_startup_categories_on_startup_id"
 
   create_table "startup_users", force: :cascade do |t|
     t.integer  "startup_id"

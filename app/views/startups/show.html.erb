@@ -1,33 +1,33 @@
 <p id="notice"><%= notice %><%= alert %></p>
+<h1><%= @startup.name %>
+  <small>
+  <% @startup.categories.each do |category| %>
+    <span class="label label-info"><%= category.name %></span>
+  <% end %>
+  </small>
+</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @startup.name %>
-</p>
+    
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h2 class="panel-title">Details</h2>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+          <%= image_tag(@startup.logo_url, class: 'img-responsive') %>
+        <h4>ABOUT</h4>
+        <p><%= @startup.description %></p>
+        <hr>
+        <p><strong>Website: </strong><%= @startup.website %></p>
+        <p><strong>Contact profile: </strong><%= link_to @owner_profile.name, profile_path(@owner_profile) %></p>
+        <p><strong>People in this startup:</strong></p>
+        <ul>
+          <% @startup.users.each do |user| %>
+            <li><%= link_to user.profile.name, profile_path(user.profile) %></li>
+          <% end %>
+        </ul>
 
-<p>
-  <strong>Description:</strong>
-  <%= @startup.description %>
-</p>
-
-<p>
-  <strong>Logo:</strong>
-  <%= @startup.logo %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @startup.website %>
-</p>
-<p><strong>Admin: </strong><%= @owner_profile.name %></p>
-<p>
-  <strong>People:</strong>
-  <ul>
-    <% @startup.users.each do |user| %>
-      <li><%= link_to user.profile.name, profile_path(user.profile) %></li>
-    <% end %>
-  </ul>
-</p>
 
 <% if user_signed_in? %>
   <% if @startup.users.include?(current_user) %>
@@ -48,20 +48,38 @@
 <% if @startup.is_owner?(current_user) %>
   <%= link_to 'Edit', edit_startup_path(@startup) %>
 <% end %>
-
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
+<div class="col-md-6">
+<div class="row">
+<div class="col-md-6">
+<h4>Locations</h4>
+<% @locations.each do |location| %>
+  <h5><strong><%= location.name %></strong></h5>
+  <p><%= location.street %></p>
+  <p><%= location.suburb %> <%= location.state %> <%= location.postcode %><br><%= location.country %></p>
+  <hr>
+<% end %>
+</div>
+<div class="col-md-6">
+<div style='width: 100%;'>
+  <div id="map" style='width: 100%; height: 200px;'></div>
+</div>
+</div>
+</div>
+
+
 
 <script>
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
   markers = handler.addMarkers([
+    <% @locations.each_with_index do |location, index| %>
     {
-      "lat": <%= @startup.latitude %>,
-      "lng": <%= @startup.longitude %>,
+      "lat": <%=location.latitude %>,
+      "lng": <%=location.longitude %>,
       "infowindow": "hello!"
-    }
+    }<%= (index + 1) == @locations.count ? '' : ', ' %>
+    <% end %>
   ]);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();

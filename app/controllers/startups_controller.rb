@@ -16,15 +16,21 @@ class StartupsController < ApplicationController
   def index
     if params[:tag]
       @startups = Startup.tagged_with(params[:tag])
+    elsif params[:category]
+      @category = Category.find(params[:category])
+      @startups = @category.startups
     else
       @startups = Startup.all
     end
+    @categories = Category.all
+
   end
 
   # GET /startups/1
   # GET /startups/1.json
   def show
     @owner_profile = User.find(@startup.owner_id).profile
+    @locations = @startup.locations
   end
 
   # GET /startups/new
@@ -85,6 +91,6 @@ class StartupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def startup_params
-      params.require(:startup).permit(:street, :suburb, :state, :postcode, :country, :tag_list, :name, :description, :logo, :website, :owner_id, :location_attributes => [:id, :street, :suburb, :state, :postcode, :country, :_destroy])
+      params.require(:startup).permit(:street, :suburb, :state, :postcode, :country, :tag_list, :name, :description, :logo, :website, :owner_id, :locations_attributes => [:id, :name, :street, :suburb, :state, :postcode, :country, :_destroy], category_ids: [])
     end
 end

@@ -24,11 +24,15 @@ class Startup < ActiveRecord::Base
 	has_many :locations
 	has_many :startup_users
 	has_many :users, through: :startup_users
-	accepts_nested_attributes_for :locations
+	has_many :startup_categories
+	has_many :categories, through: :startup_categories
+	accepts_nested_attributes_for :locations, :allow_destroy => true
 
 	acts_as_taggable
 	extend FriendlyId
 	friendly_id :slug_candidates, use: :slugged
+
+	mount_uploader :logo, LogoUploader
 
 	def slug_candidates
 		[
