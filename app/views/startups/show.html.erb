@@ -65,7 +65,17 @@
   <div id="map" style='width: 100%; height: 200px;'></div>
 </div>
 </div>
+<% if user_signed_in? %>
+  <% unless @startup.users.include?(current_user) %>
+    <% if (current_user.reviews & @startup.reviews) == [] %>
+      <%= link_to 'Add review', new_review_path(startup: @startup.id), class: 'btn btn-info' %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= render @reviews %>
 </div>
+</div>
+
 
 
 

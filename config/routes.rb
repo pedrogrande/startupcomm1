@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :categories
   resources :locations
   get 'maps', to: 'maps#index'

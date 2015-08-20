@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :startups, through: :startup_users
   has_many :questions
   has_many :answers
+  has_many :reviews
 
   acts_as_voter
   # Include default devise modules. Others available are:
@@ -38,6 +39,9 @@ class User < ActiveRecord::Base
   def assign_default_role
   	self.add_role :user
   end
+
+  def self.has_reviewed?(startup)
+    self.
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

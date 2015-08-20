@@ -31,6 +31,8 @@ class StartupsController < ApplicationController
   def show
     @owner_profile = User.find(@startup.owner_id).profile
     @locations = @startup.locations
+    @reviews = @startup.reviews
+    @latest_reviews = @startup.reviews.latest_five
   end
 
   # GET /startups/new
