@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+
+  get 'relationships/destroy'
+
+  root 'home#index'
+  resources :enquiries
+  get 'contact', to: 'contact#index'
+
   resources :reviews
   resources :categories
   resources :locations
@@ -27,13 +35,19 @@ Rails.application.routes.draw do
   resources :events
   resources :profiles
   devise_for :users #, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   # get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

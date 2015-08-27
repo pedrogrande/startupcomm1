@@ -21,11 +21,17 @@ class User < ActiveRecord::Base
   rolify
   has_one :profile
   has_many :events
-  has_many :startup_users
+  has_many :startup_users, foreign_key: :startup_id
   has_many :startups, through: :startup_users
   has_many :questions
   has_many :answers
   has_many :reviews
+
+  has_many :relationships, foreign_key: :follower_id, dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+
+  has_many :reverse_relationships, foreign_key: :followed_id, class_name: 'Relationship', dependent: :destroy
+  has_many :followers, through: :reverse_relationships
 
   acts_as_voter
   # Include default devise modules. Others available are:
@@ -35,6 +41,19 @@ class User < ActiveRecord::Base
   # devise :omniauthable, :omniauth_providers => [:facebook]
 
   after_create :assign_default_role
+
+
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy!
+  end
 
   def assign_default_role
   	self.add_role :user
