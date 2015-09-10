@@ -4,6 +4,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <h3><%= @profile.name %></h3>
+        <p><%= link_to new_message_path(to: @profile.user.id), class: 'btn btn-primary' do %><i class="fa fa-send"></i> Message<% end %></p>
         <p><%= image_tag(@profile.profile_pic_url, class: 'img-responsive') %></p>
         <p>
           <strong>About me</strong>

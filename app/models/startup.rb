@@ -53,4 +53,14 @@ class Startup < ActiveRecord::Base
 	def is_owner?(user)
 		self.owner_id == user.id
 	end
+
+	def self.search(search_terms)
+		where("name LIKE ? or description LIKE ?", "%#{search_terms}%", "%#{search_terms}%")
+	end
 end
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Premium Listings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Startup</th>
+      <th>Price</th>
+      <th>Expiry date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @premium_listings.each do |premium_listing| %>
+      <tr>
+        <td><%= premium_listing.user %></td>
+        <td><%= premium_listing.startup %></td>
+        <td><%= premium_listing.price %></td>
+        <td><%= premium_listing.expiry_date %></td>
+        <td><%= link_to 'Show', premium_listing %></td>
+        <td><%= link_to 'Edit', edit_premium_listing_path(premium_listing) %></td>
+        <td><%= link_to 'Destroy', premium_listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Premium listing', new_premium_listing_path %>

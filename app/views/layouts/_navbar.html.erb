@@ -13,8 +13,14 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-     
+     <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search startups" %>
+    <%= submit_tag "Search" %>
+    <% end %>
       <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to messages_path do %>Messages <span class="badge"><%= @number_unread_messages %></span><% end %></li>
+      <% end %>
         <li><a href="/startups">Startups</a></li>
         <li><a href="/questions">Startup Questions</a></li>
         <% if user_signed_in? %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827082900) do
+ActiveRecord::Schema.define(version: 20150908095059) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -92,6 +92,30 @@ ActiveRecord::Schema.define(version: 20150827082900) do
   end
 
   add_index "locations", ["startup_id"], name: "index_locations_on_startup_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "read"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
+
+  create_table "premium_listings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "startup_id"
+    t.decimal  "price"
+    t.datetime "expiry_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "premium_listings", ["startup_id"], name: "index_premium_listings_on_startup_id"
+  add_index "premium_listings", ["user_id"], name: "index_premium_listings_on_user_id"
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name"

@@ -3,6 +3,9 @@ class HomeController < ApplicationController
   def index
   	@new_profiles = Profile.last(5)
   	@upcoming_events = Event.future_events.chron_order.limit(5)
+  	if params[:search]
+      @startups = Startup.search(params[:search])
+    end
   end
 
 end

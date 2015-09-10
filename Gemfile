@@ -17,6 +17,8 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'nested_form'
 gem 'invisible_captcha'
+gem 'stripe'
+gem 'filter_form'
 # Use sqlite3 as the database for Active Record
 
 # Use SCSS for stylesheets

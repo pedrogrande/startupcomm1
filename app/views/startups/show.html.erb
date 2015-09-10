@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %><%= alert %></p>
-<h1><%= @startup.name %>
+<h1><%= @startup.name %> <%= premium_listing(@startup) %>
   <small>
   <% @startup.categories.each do |category| %>
     <span class="label label-info"><%= category.name %></span>
@@ -7,7 +7,6 @@
   </small>
 </h1>
 
-    
     <div class="panel panel-info">
       <div class="panel-heading">
         <h2 class="panel-title">Details</h2>
@@ -18,6 +17,24 @@
           <%= image_tag(@startup.logo_url, class: 'img-responsive') %>
         <h4>ABOUT</h4>
         <p><%= @startup.description %></p>
+        <hr>
+        <p><strong>Make this a premium listing for $25</strong></p>
+        <form action="/payments?price=2500&startup=<%= @startup.id %>" method="POST">
+          <input name="utf8" type="hidden" value="&#x2713;" />
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="2500"
+            data-name="Startup Community"
+            data-description="Premium Listing ($25.00)"
+            data-image="/128x128.png"
+            data-locale="auto"
+            data-email="<%= current_user.email %>"
+            data-currency="aud"
+            data-label="Buy your premium listing">
+          </script>
+        </form>
         <hr>
         <p><strong>Website: </strong><%= @startup.website %></p>
         <p><strong>Contact profile: </strong><%= link_to @owner_profile.name, profile_path(@owner_profile) %></p>

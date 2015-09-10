@@ -19,11 +19,26 @@ class StartupsController < ApplicationController
     elsif params[:category]
       @category = Category.find(params[:category])
       @startups = @category.startups
+    elsif params[:search]
+      @startups = Startup.search(params[:search])
+    
     else
       @startups = Startup.all
     end
     @categories = Category.all
+    if params[:categories]
+      @selected_category_names = params[:categories]
+      @selected_categories = []
+      @selected_category_names.each do |category_name| 
+        @selected_categories << Category.find_by(name: category_name)
+      end
+      @startups = []
+      @selected_categories.each do |category|
+        @startups = @startups + category.startups
+      end
 
+
+    end
   end
 
   # GET /startups/1
@@ -33,6 +48,7 @@ class StartupsController < ApplicationController
     @locations = @startup.locations
     @reviews = @startup.reviews
     @latest_reviews = @startup.reviews.latest_five
+    
   end
 
   # GET /startups/new

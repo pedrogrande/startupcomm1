@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :payments, only: :create
+  resources :premium_listings
   get 'relationships/create'
 
   get 'relationships/destroy'
