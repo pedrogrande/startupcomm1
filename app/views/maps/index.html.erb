@@ -1,7 +1,14 @@
 <h1>The Big Map of Startups</h1>
-
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+<style>
+  .full-width {
+    position:absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+</style>
+<div class="full-width">
+  <div id="map" style='width: 100%; height: 400px;'></div>
 </div>
 
 
@@ -20,7 +27,6 @@ function initMap() {
     title: 'Hello World!'
   });
 }
-
-    </script>
+</script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>

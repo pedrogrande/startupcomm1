@@ -1,7 +1,10 @@
 class StartupsController < ApplicationController
-  before_action :set_startup, only: [:join, :leave, :show, :edit, :update, :destroy]
+  before_action :set_startup, only: [:map, :join, :leave, :show, :edit, :update, :destroy]
+   respond_to :html, :js
   # load_and_authorize_resource
-
+  def map
+    
+  end
   def leave
     @startup.users.delete(user)
     redirect_to :back

@@ -1,0 +1,2 @@
+module StartupsMapHelper
+end

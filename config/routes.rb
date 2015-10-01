@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :startup_maps do
+    member do
+      post :map
+    end
+  end
+
+  get 'map/index'
+  # get 'startup_on_map', to: 'startups#startup_on_map'
   resources :messages
   resources :payments, only: :create
   resources :premium_listings
